@@ -1,24 +1,107 @@
-import logo from './logo.svg';
 import './App.css';
+import InsSignup from './component/inssignup';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import InsLogIn from './component/inslogin';
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react';
+
+import InsReg from './component/insRegistration';
+import Home from './component/home';
+import mainservices from './service/mainservice';
+import { AddUser } from './redux/slice/userslice';
+import { loginId, logInIdentification,instituteDetails } from './redux/slice/Loginidslice';
+import Profile from './component/profile';
+
+import ForceRedirect from './routeProtection/ForcedRedirect'
+import ProtectedRoute from './routeProtection/ProtectedRoute';
+import Main from './component/Main/main';
+import Studentform from './component/Student/Studentform';
+import TeacherForm from './component/Teacher/TeacherForm';
+import Schedule from './component/Teacher/Schedule';
 
 function App() {
+  const dispatch = useDispatch()
+
+  const userID = useSelector((state) =>
+    state.loginIdSlice.userId
+  )
+  async function VerifyToken(data) {
+    const res = await mainservices.verifyToken(data)
+    if (res.data != null) {
+      console.log(res);
+      dispatch(loginId(res.data._id))
+      dispatch(logInIdentification(true))
+      FetchData(res.data._id)
+    }
+    else {
+      console.log("error token verification");
+      dispatch(logInIdentification(false))
+      console.log(data, "ERR MSG");
+    }
+  }
+  async function FetchData(id) {
+    const res = await mainservices.getUser(id)
+    if (res.data != null) {
+      console.log(res.data,"fetch datas");
+      const userDetails = {
+        firstName: res.data.firstName,
+        lastName: res.data.lastName,
+        email: res.data.email,
+        instituteid: res.data.InstituteId
+      }
+      dispatch(AddUser(userDetails))
+
+    }
+    else {
+      console.log("User couldn't find");
+    }
+  }
+  // const details=useSelector((state)=>state.userSlice.User)
+  // const insDetails=FetchData(details.instituteid)
+  // dispatch(instituteDetails(insDetails))
+  // console.log(insDetails);
+
+  const Bool = useSelector((state) => { return state.loginIdSlice.isLoggedIn })
+  const token = localStorage.getItem('Token')
+  console.log(Bool);
+  useEffect(() => {
+    if (token) {
+      const data = { token: token }
+      VerifyToken(data);
+      FetchData(userID);
+
+      console.log(userID, "userid");
+
+    }
+
+
+  }, [Bool])
+
+  // FetchData(id)
+  // useEffect
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<InsSignup />}></Route>
+          <Route path='/Insreg' element={<InsReg />}></Route>
+          <Route path='/Login' element={<ForceRedirect user={Bool}><InsLogIn /></ForceRedirect>}></Route>
+          <Route element={<Main />}>
+            <Route path='/Home' element={<ProtectedRoute user={Bool}><Home /></ProtectedRoute>}></Route>
+            <Route path='/std' element={<Studentform />}></Route>
+            <Route path='/tchr' element={<TeacherForm />}></Route>
+            <Route path='/sch' element={<Schedule />}></Route>
+            <Route path='/Profile' element={<Profile />}></Route>
+
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
+
     </div>
+
   );
 }
 

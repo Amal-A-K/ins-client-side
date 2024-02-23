@@ -1,0 +1,17 @@
+.studa {
+   
+    background-color:aquamarine;
+    grid-area: main;
+    padding: 20px;
+    
+}
+
+.studf {
+    width: 800px;
+    height: max-content;
+    box-shadow: 5px 10px 5px 5px grey;
+    padding: 40px;
+    background-color:gainsboro;
+    /* margin-top: 20px; */
+    
+}

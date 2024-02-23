@@ -1,0 +1,32 @@
+.side{
+    /* margin-top: 40px; */
+    /* border: 4px groove green; */
+    background-color: rgb(212, 238, 238);
+    width: 100%;
+    height: 100%;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    color:cornflowerblue;
+    font-size: 25px;
+    font-weight: bold;
+    grid-area: side;
+}
+.stdb{
+    border-radius: 12px;
+    width: 300px;
+    background-color:darkgrey;
+    border-color:darkgrey;
+}
+.tchrb{
+    border-radius: 12px;
+    width: 300px;
+    background-color:darkgrey;
+    border-color:darkgrey;
+}
+.stdb:hover{
+    background-color: dimgrey;
+
+}
+.tchrb:hover{
+    background-color: dimgrey;
+}

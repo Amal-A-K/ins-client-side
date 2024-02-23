@@ -1,0 +1,13 @@
+.field{
+    width: 800px;
+    height: fit-content;
+    box-shadow: 5px 10px 5px 5px grey;
+    background-color: gainsboro;
+    padding: 40px;
+    border-radius: 8px;
+}
+.teach{
+    grid-area: main;
+    background-color:aquamarine;
+    padding: 20px;
+}

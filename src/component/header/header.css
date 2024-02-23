@@ -1,0 +1,19 @@
+.head {
+    background-color: cadetblue;
+    grid-area: nav;
+    /* height: 100px; */
+    /* width: 100%; */
+    display: flex;   
+    justify-content: right;
+}
+
+.img1 {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+.navlink{
+    margin-top: 30px;
+}
