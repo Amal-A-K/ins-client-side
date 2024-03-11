@@ -9,7 +9,7 @@ import InsReg from './component/insRegistration';
 import Home from './component/home';
 import mainservices from './service/mainservice';
 import { AddUser } from './redux/slice/userslice';
-import { loginId, logInIdentification,instituteDetails } from './redux/slice/Loginidslice';
+import { loginId, logInIdentification} from './redux/slice/Loginidslice';
 import Profile from './component/profile';
 
 import ForceRedirect from './routeProtection/ForcedRedirect'
@@ -18,6 +18,8 @@ import Main from './component/Main/main';
 import Studentform from './component/Student/Studentform';
 import TeacherForm from './component/Teacher/TeacherForm';
 import Schedule from './component/Teacher/Schedule';
+import StdTable from './component/Student/Student Table/StdTable';
+import TeacherTab from './component/Teacher/TeacherTable/TeacherTab'
 
 function App() {
   const dispatch = useDispatch()
@@ -90,10 +92,12 @@ function App() {
           <Route path='/Login' element={<ForceRedirect user={Bool}><InsLogIn /></ForceRedirect>}></Route>
           <Route element={<Main />}>
             <Route path='/Home' element={<ProtectedRoute user={Bool}><Home /></ProtectedRoute>}></Route>
-            <Route path='/std' element={<Studentform />}></Route>
-            <Route path='/tchr' element={<TeacherForm />}></Route>
-            <Route path='/sch' element={<Schedule />}></Route>
-            <Route path='/Profile' element={<Profile />}></Route>
+            <Route path='/std' element={<ProtectedRoute user={Bool}><Studentform /></ProtectedRoute>}></Route>
+            <Route path='/tchr' element={<ProtectedRoute user={Bool}><TeacherForm /></ProtectedRoute>}></Route>
+            <Route path='/sch' element={<ProtectedRoute user={Bool}><Schedule /></ProtectedRoute>}></Route>
+            <Route path='/Profile' element={<ProtectedRoute user={Bool}><Profile /></ProtectedRoute>}></Route>
+            <Route path='/StdTable' element={<ProtectedRoute user={Bool}><StdTable/></ProtectedRoute>}></Route>
+            <Route path='/TchrTable' element={<ProtectedRoute user={Bool}><TeacherTab/></ProtectedRoute>}></Route>
 
           </Route>
 

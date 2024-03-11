@@ -28,7 +28,7 @@ const InsReg = () => {
             return res2.data.Studentid;
         }
         else {
-            console.log('Something wrong in Student field',res2);
+            console.log('Something wrong in Student field', res2);
         }
     }
 
@@ -41,14 +41,14 @@ const InsReg = () => {
             return res2.data.Teacherid;
         }
         else {
-            console.log('Something wrong in Teacher field',res2);
+            console.log('Something wrong in Teacher field', res2);
         }
     }
 
     //............. id updation in registration field ..........................
 
-    async function SecInsUpdate(id,user_id, data) {
-        const res4 = await mainservices.secondupdateINS(id,user_id, data)
+    async function SecInsUpdate(id, user_id, data) {
+        const res4 = await mainservices.secondupdateINS(id, user_id, data)
         if (res4.data != null) {
             console.log("Id updation successful")
         }
@@ -81,12 +81,12 @@ const InsReg = () => {
 
                 //.............. teacher and student id storing in index array .....................
 
-                const Index = [
-                    {
-                        Student: Student_id,
-                        Teacher: Teacher_id
-                    }
-                ]
+                const Index =
+                {
+                    Student: Student_id,
+                    Teacher: Teacher_id
+                }
+
 
 
 
@@ -96,11 +96,11 @@ const InsReg = () => {
 
                 const insid = response.data.Instituteid
                 console.log(insid, "ins id")
-                console.log(user_id,"user-id");
+                console.log(user_id, "user-id");
 
                 //.............. id updation in registration field component calling ......................
 
-                SecInsUpdate(insid,user_id, { Index: Index });
+                SecInsUpdate(insid, user_id, { Index: Index });
 
                 //........................ login page .....................................................
 

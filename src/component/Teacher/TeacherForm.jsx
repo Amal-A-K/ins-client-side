@@ -1,21 +1,29 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import mainservice from '../../service/mainservice';
 import './Teacherform.css';
 
 function TeacherForm() {
     const [form, setForm] = useState({})
+    const navigate=useNavigate();
     // const details = useSelector((state) => state.userSlice.User)
     const ins=useSelector((state)=>state.loginIdSlice.insDetails)
     // const det = useSelector((state) => state.loginIdSlice.insDetails)
-    console.log(ins.Index[0].Teacher,"Index Teacher Details");
+    useEffect(()=>{
+        console.log(ins.Index[0].Teacher,"Index Teacher Details");
+       
+        console.log(ins, "institute details");
+    
 
+
+    },[ins])
+   
     const tchrId=ins.Index[0].Teacher;
     console.log(tchrId,"Teacher Id");
-    console.log(ins, "institute details");
-
+   
 
     // console.log(details, "entho details");
     // const insdet=det.Index.Teacher
@@ -34,6 +42,7 @@ function TeacherForm() {
             const res = await mainservice.addTeacher(id, form)
             if (res.data != null) {
                 console.log("Successfully added Teacher");
+                navigate('/TchrTable')
                 console.log(ins, "institute details inside teacher from");
                 // console.log(details, "entho details inside teacher form");
             }
@@ -71,7 +80,7 @@ function TeacherForm() {
 
                     <Form.Group className="mb-3" controlId="formBasicDateOfBirth">
                         <Form.Label>Date Of Birth</Form.Label>
-                        <Form.Control type="date" placeholder="Enter Date of Birth" name='Date of Birth' onChange={onChangeHandler} />
+                        <Form.Control type="date" placeholder="Enter Date of Birth" name='DateOfBirth' onChange={onChangeHandler} width={'200px'} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicAge">
@@ -82,6 +91,7 @@ function TeacherForm() {
                     <Form.Group className="mb-3" controlId="formBasicGender">
                         <Form.Label>Gender</Form.Label><br></br>
                         <Form.Select name='Gender' onChange={onChangeHandler}>
+                            <option onChange={onChangeHandler}>--Select your Gender--</option>
                             <option onChange={onChangeHandler}>Male</option>
                             <option onChange={onChangeHandler}>Female</option>
                             <option onChange={onChangeHandler}>Transgender</option>
@@ -106,12 +116,17 @@ function TeacherForm() {
 
                     <Form.Group className="mb-3" controlId="formBasicDesignation">
                         <Form.Label>Designation</Form.Label>
-                        <Form.Control type="text" placeholder="designation" name='Designation' onChange={onChangeHandler} />
+                        <Form.Control type="text" placeholder="Designation" name='Designation' onChange={onChangeHandler} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicSubject">
                         <Form.Label>Subject</Form.Label>
                         <Form.Control type="text" placeholder="Subject" name='Subject' onChange={onChangeHandler} />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicSubject">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" placeholder="Email" name='Email' onChange={onChangeHandler} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPhonenumber">

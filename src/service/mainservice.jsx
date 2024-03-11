@@ -70,7 +70,11 @@ async function addStudent(id,data) {
     return response
 }
 async function getStud() {
-    const response = await apicall.apicall('get', 3006, 'STD/addSTUD')
+    const response = await apicall.apicall('get', 3006, 'STD/getSTUD')
+    return response
+}
+async function getStudByIdForOne(id) {
+    const response = await apicall.apicall('get', 3006, `STD/getSTUDById/${id}}`)
     return response
 }
 async function getStudById(id) {
@@ -81,8 +85,18 @@ async function updateStud(id, data) {
     const response = await apicall.apicall('put', 3006, `STD/update/${id}`, data)
     return response
 }
+async function updateOneStudent(indexid,studentid,data) {
+    const response = await apicall.apicall('put', 3006, `STD/updateOneStud/${indexid}/${studentid}`,data)
+    return response
+}
 async function deleteStud(id) {
+    // console.log(id,"id from mainservice");
     const response = await apicall.apicall('delete', 3006, `STD/delete/${id}`)
+    return response
+}
+async function deleteStudOne(indexid,studentid) {
+    // console.log(id,"id from mainservice");
+    const response = await apicall.apicall('put', 3006, `STD/deleteStud/${indexid}/${studentid}`)
     return response
 }
 
@@ -107,8 +121,17 @@ async function update(id, data) {
     const response = await apicall.apicall('put', 3005, `Tchr/updateTeacher/${id}`, data)
     return response
 }
+async function updateOneTeacher(indexid,teacherid,data) {
+    const response = await apicall.apicall('put', 3005, `Tchr/updateOneTeacher/${indexid}/${teacherid}`,data)
+    return response
+}
+
 async function deleteTeacher(id) {
     const response = await apicall.apicall('delete', 3005, `Tchr/deleteTchr/${id}`)
+    return response
+}
+async function deleteOneTeacher(indexid,teacherid) {
+    const response = await apicall.apicall('put', 3005, `Tchr/deleteOneTchr/${indexid}/${teacherid}`)
     return response
 }
 
@@ -129,14 +152,19 @@ export default {
     addStud,
     addStudent,
     getStud,
+    getStudByIdForOne,
     getStudById,
     updateStud,
+    updateOneStudent,
     deleteStud,
+    deleteStudOne,
     addTchr,
     addTeacher,
     getTch,
     getTchrById,
     update,
-    deleteTeacher
+    updateOneTeacher,
+    deleteTeacher,
+    deleteOneTeacher
 
 }
