@@ -48,7 +48,7 @@ function Studentform() {
 
     return (
         <div className='studa'>
-            <Form>
+            <Form onSubmit={onSubmitHandler}>
                 <fieldset className='studf'>
                     <h1>
                         Student Form

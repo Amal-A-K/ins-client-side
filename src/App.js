@@ -20,6 +20,8 @@ import TeacherForm from './component/Teacher/TeacherForm';
 import Schedule from './component/Teacher/Schedule';
 import StdTable from './component/Student/Student Table/StdTable';
 import TeacherTab from './component/Teacher/TeacherTable/TeacherTab'
+import ClassRoom from './component/Class Room/ClassRoom';
+import ClassRoomTab from './component/Class Room/classRoomTab/classRoomTab';
 
 function App() {
   const dispatch = useDispatch()
@@ -98,6 +100,8 @@ function App() {
             <Route path='/Profile' element={<ProtectedRoute user={Bool}><Profile /></ProtectedRoute>}></Route>
             <Route path='/StdTable' element={<ProtectedRoute user={Bool}><StdTable/></ProtectedRoute>}></Route>
             <Route path='/TchrTable' element={<ProtectedRoute user={Bool}><TeacherTab/></ProtectedRoute>}></Route>
+            <Route path='/Classroom' element={<ProtectedRoute user={Bool}><ClassRoom/></ProtectedRoute>}></Route>
+            <Route path='/ClassroomTab' element={<ProtectedRoute user={Bool}><ClassRoomTab/></ProtectedRoute>}></Route>
 
           </Route>
 

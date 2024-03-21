@@ -57,7 +57,27 @@ async function deleteUser(id) {
 
 }
 
-
+//class room 
+async function addClassRoom(data){
+    const response = await apicall.apicall('post',4001,'ClsRoom/createClass',data)
+    return response
+}
+async function getClassRoom(){
+    const response = await apicall.apicall('get',4001,'ClsRoom/getClassroom')
+    return response
+}
+async function getClassRoomById(id){
+    const response = await apicall.apicall('get',4001,`ClsRoom/getClassroomById/${id}`)
+    return response
+}
+async function updateClassRoom(id,data){
+    const response = await apicall.apicall('put',4001,`ClsRoom/updateClassroom/${id}`,data)
+    return response
+}
+async function deleteClassRoom(id){
+    const response = await apicall.apicall('delete',4001,`ClsRoom/deleteClassroom/${id}`)
+    return response
+}
 
 
 //stud apicall
@@ -149,6 +169,11 @@ export default {
     getUser,
     updateUser,
     deleteUser,
+    addClassRoom,
+    getClassRoom,
+    getClassRoomById,
+    updateClassRoom,
+    deleteClassRoom,
     addStud,
     addStudent,
     getStud,

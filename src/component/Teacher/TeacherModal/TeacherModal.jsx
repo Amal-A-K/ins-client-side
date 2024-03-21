@@ -1,4 +1,5 @@
 import Modal from 'react-bootstrap/Modal'
+import './TeacherModal.css'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -159,7 +160,7 @@ function TeacherModal({ modalData, show, setShow }) {
                                 <Form.Control type="number" placeholder="Phone number" name='PhoneNumber' onChange={ChangeHandler} value={form?.PhoneNumber} />
                             </Form.Group>
 
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="secondary" onClick={handleClose} className='teacher-modal-button'>
                                 Close
                             </Button>
                             <Button variant="primary" type="submit" onClick={updateHandler}>

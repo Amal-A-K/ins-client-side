@@ -1,0 +1,15 @@
+.fieldcover{
+    background-color:gainsboro;
+    border-radius: 7px;
+    /* border: 2px solid black; */
+    box-sizing: border-box;
+    height: max-content;
+    box-shadow: 5px 10px 5px 5px grey;
+    padding: 40px;
+    margin: 20px;
+}
+.f-1{
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
